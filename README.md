@@ -3,6 +3,7 @@
 ## Requirements
 
 For development, you will only need Node.js installed in your environement.
+This node app is running on localhost. To test the routes install the postman.
 
 ### Node
 - #### Node installation on Windows
