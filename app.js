@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('./db')
 const app = express();
 
+// This route shows all the tasks either completed or not
 app.get("/getAllTasks" , (req , res) => {
     pool.query('SELECT * FROM todo ORDER BY todo_id ASC', (error, results) => {
         if (error) {
@@ -11,6 +12,7 @@ app.get("/getAllTasks" , (req , res) => {
     })
 })
 
+// This route creates a new task
 app.post("/createTask" , async(req , res) => {
   const { name, status} = req.body
 
@@ -22,6 +24,7 @@ app.post("/createTask" , async(req , res) => {
   })
 })
 
+// This route updates a particular task with status completed
 app.put("/updateTask" , (req , res) => {
     const {id , status} = req.body
     pool.query('UPDATE todo SET status = $2 where todo_id = $1', [id , status], (error, results) => {
@@ -32,6 +35,7 @@ app.put("/updateTask" , (req , res) => {
     })
 })
 
+// This route shows all the tasks which are completed
 app.get("/CompletedTask" , (req , res) => {
     const {status} = req.body
     pool.query('SELECT * FROM todo where status = $1', [status], (error, results) => {
@@ -42,6 +46,7 @@ app.get("/CompletedTask" , (req , res) => {
     })
 })
 
+// This route shows all the tasks which are yet to be completed
 app.get("/taskToBeDone" , (req , res) => {
     const {status} = req.body
     pool.query('SELECT * FROM todo where status = $1', [status], (error, results) => {
