@@ -1,3 +1,4 @@
+//Making connection to postgresql on local machine
 const Pool = require("pg").Pool
 
 const pool = new Pool({
